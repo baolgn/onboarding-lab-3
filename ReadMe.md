@@ -1,3 +1,6 @@
 # Week 3 Lab: Verification
 
-Fill out this readme as required by lab guidance
+## Questions
+1. The testing strategy was to verify reset behavior with multiple seed values covering edge cases like all-zeros and all-ones, then for each seed, run the LFSR for 200 cycles comparing against a C++ reference model of the feedback polynomial, and finally re-assert reset mid-sequence to confirm it overrides the running state. The key decisions were choosing how many cycles to run (enough to exercise the feedback path thoroughly without being exhaustive over the full 2-to-the-power-of-16 state space) and selecting seeds that include boundary values (0x0000, 0xFFFF) alongside arbitrary ones to catch initialization-dependent bugs.
+   
+2. Testing a don't care requires actively varying every input that is supposed to be irrelevant and confirming the output remains unchanged, because a don't care in the spec only means the designer made no guarantees, not that the implementation actually ignores those inputs. To ensure an input truly has no effect on output, you must sweep it across a representative range of values while also varying the other don't-care inputs of sel, alpha, beta, gamma simultaneously, so that no combination of ignored inputs can produce a non-zero output.
