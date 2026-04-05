@@ -2,7 +2,7 @@
   @brief A module of mysterious purpose
 
   @input clk    clock
-  @input nReset active-low reset
+  @input reset  active-high reset
   @input a      an input
   @input b      an input
   @input c      an input
